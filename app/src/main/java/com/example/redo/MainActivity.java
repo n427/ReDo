@@ -1,10 +1,10 @@
 package com.example.redo;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -15,22 +15,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MaterialButton buyButton = findViewById(R.id.buyButton);
-        MaterialButton sellButton = findViewById(R.id.sellButton);
+        MaterialButton loginButton = findViewById(R.id.mainLoginButton);
+        MaterialButton regButton = findViewById(R.id.mainRegButton);
 
-        buyButton.setOnClickListener(this);
-        sellButton.setOnClickListener(this);
+        loginButton.setOnClickListener(this);
+        regButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.buyButton:
-                Intent buyIntent = new Intent(MainActivity.this, BuyActivity.class);
+            case R.id.mainLoginButton:
+                Intent buyIntent = new Intent(MainActivity.this, ListingsActivity.class);
                 startActivity(buyIntent);
                 break;
-            case R.id.sellButton:
-                Intent sellIntent = new Intent(MainActivity.this, SellActivity.class);
+            case R.id.mainRegButton:
+                Intent sellIntent = new Intent(MainActivity.this, RegisterActivity.class);
                 startActivity(sellIntent);
                 break;
         }

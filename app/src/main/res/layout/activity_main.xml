@@ -10,12 +10,12 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buyButton"
+        android:id="@+id/mainLoginButton"
         android:layout_width="182dp"
         android:layout_height="58dp"
-        android:backgroundTint="#E3BC9A"
+        android:backgroundTint="#FDD982"
         android:capitalize="none"
-        android:text="I Want To Buy"
+        android:text="Log in"
         android:textAllCaps="false"
         android:textColor="#505050"
         android:textSize="20sp"
@@ -23,14 +23,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.764" />
+        app:layout_constraintVertical_bias="0.75" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/sellButton"
+        android:id="@+id/mainRegButton"
         android:layout_width="182dp"
         android:layout_height="58dp"
-        android:backgroundTint="#E3BC9A"
-        android:text="I Want To Sell"
+        android:backgroundTint="#FDD982"
+        android:text="Register"
         android:textAllCaps="false"
         android:textColor="#505050"
         android:textSize="20sp"
@@ -38,25 +38,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.894" />
+        app:layout_constraintVertical_bias="0.85" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textView"
-        android:layout_width="414dp"
-        android:layout_height="77dp"
-        android:background="#FFFFFF"
-        android:backgroundTint="#50C878"
-        android:gravity="center"
-        android:text="ReDo- The Future of Donating"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp"
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="ReDo"
+        android:textSize="56sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/materialButton2"
+        app:layout_constraintBottom_toTopOf="@+id/buyButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintVertical_bias="0.241" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

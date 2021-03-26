@@ -8,18 +8,6 @@
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textView"
-        android:layout_width="414dp"
-        android:layout_height="77dp"
-        android:background="@color/white"
-        android:backgroundTint="#50C878"
-        android:gravity="center"
-        android:text="ReDo- The Future of Donating"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -35,62 +23,71 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="@color/brown1"
-                android:backgroundTint="#00CA9E7B"
                 android:text="Selling?"
                 android:textColor="#000000"
                 android:textSize="30sp"
                 android:textStyle="normal" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Address:"
-                android:textColor="#474747"
-                android:textSize="18sp" />
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                app:startIconDrawable="@drawable/ic_baseline_edit_24">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/addressInput"
-                android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/sellItemName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Item Name"
+                    android:shadowColor="#002C2C2C"
+                    android:textColorHighlight="#FFFFFF" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPostalAddress"
-                android:shadowColor="#002C2C2C"
-                android:textColorHighlight="#FFFFFF" />
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginBottom="10dp"
+                app:startIconDrawable="@drawable/ic_baseline_attach_money_24">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/sellPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Price"
+                    android:inputType="number"
+                    android:shadowColor="#002C2C2C"
+                    android:textColorHighlight="#FFFFFF" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Organization Name:"
-                android:textColor="#474747"
-                android:textSize="18sp" />
+                android:layout_marginHorizontal="40dp"
+                android:gravity="top"
+                app:startIconDrawable="@drawable/ic_baseline_menu_book_24">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/organizationInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Item Description:"
-                android:textColor="#474747"
-                android:textSize="18sp" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/descriptionInput"
-                android:layout_width="378dp"
-                android:layout_height="150dp"
-                android:layout_marginTop="15dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:shadowColor="#191616"
-                android:textColor="#000000" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/sellDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minLines="5"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
+                    android:scrollbars="vertical"
+                    android:ems="10"
+                    android:gravity="top"
+                    android:hint="Item Description"
+                    android:inputType="textMultiLine"
+                    android:shadowColor="#002C2C2C"
+                    android:textColorHighlight="#FFFFFF" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
@@ -104,8 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/cat"
-                />
+                android:src="@drawable/cat" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -114,28 +110,28 @@
                 android:layout_marginBottom="30dp">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/sellingBack"
-                    android:layout_width="93dp"
+                    android:id="@+id/sellBack"
+                    android:layout_width="wrap_content"
                     android:layout_height="55dp"
-                    android:backgroundTint="#E3BC9A"
+                    android:layout_marginLeft="40dp"
+                    android:backgroundTint="#FDD982"
                     android:text="Back"
                     android:textAllCaps="false"
                     android:textColor="#505050"
                     android:textSize="18sp"
-                    android:layout_marginLeft="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/sellingNext"
-                    android:layout_width="93dp"
+                    android:id="@+id/sellSubmit"
+                    android:layout_width="wrap_content"
                     android:layout_height="55dp"
-                    android:backgroundTint="#E3BC9A"
-                    android:text="Next"
+                    android:layout_marginRight="40dp"
+                    android:backgroundTint="#FDD982"
+                    android:text="Submit"
                     android:textAllCaps="false"
                     android:textColor="#505050"
                     android:textSize="18sp"
-                    android:layout_marginRight="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
