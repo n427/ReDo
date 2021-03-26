@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "208735533402",
+    "project_id": "redo-6df3d",
+    "storage_bucket": "redo-6df3d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208735533402:android:07c3c305ec936a350adb63",
+        "android_client_info": {
+          "package_name": "com.example.redo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208735533402-jggjqsrnrl5sq1047t78mknmlai29oqa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_j7XIwDK7pyhHJ_IA9ygFS6dzacfCS2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "208735533402-jggjqsrnrl5sq1047t78mknmlai29oqa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
