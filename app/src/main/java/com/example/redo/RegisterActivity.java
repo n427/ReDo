@@ -17,10 +17,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private DatabaseReference database;
+    private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
     private EditText emailEdit;
@@ -33,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        database = FirebaseDatabase.getInstance().getReference();
+        db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
         MaterialButton backButton = findViewById(R.id.regBack);
@@ -71,10 +71,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // save the user's information
+                            // save the user
                             String id = task.getResult().getUser().getUid();
                             User user = new User(name, email, city);
-                            database.child("users").child(id).setValue(user);
+                            db.collection("users").document(id).set(user);
 
                             // go to the listings screen
                             Intent listingsIntent = new Intent(RegisterActivity.this, ListingsActivity.class);

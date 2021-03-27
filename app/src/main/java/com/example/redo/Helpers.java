@@ -1,67 +1,60 @@
 package com.example.redo;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.RequestBody;
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 public class Helpers {
-    private static final String BASE_URL = "https://api.sheety.co/431e78c323ce8d7e2868e0d3a5ee3c6e/reDo/";
-
     public static final String TAG = "ReDo";
 
-    public static void post(final String sheet, final JSONObject json) {
-        final StringBuilder sb = new StringBuilder();
-        Thread t1 = new Thread(new Runnable() {
+    public static User getUser(String id) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final CountDownLatch latch = new CountDownLatch(1);
+
+        final List<User> users = new ArrayList<>();
+        db.collection("users").document(id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void run() {
-                try {
-
-                    MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-                    OkHttpClient client = new OkHttpClient();
-
-                    okhttp3.RequestBody body = RequestBody.create(JSON, json.toString());
-                    okhttp3.Request request = new okhttp3.Request.Builder()
-                            .url(BASE_URL + sheet)
-                            .post(body)
-                            .build();
-
-                    okhttp3.Response response = client.newCall(request).execute();
-
-                    String networkResp = response.body().string();
-                    if (!networkResp.isEmpty()) {
-                        sb.append(parseJSONStringToJSONObject(networkResp).toString());
-                    }
-                } catch (Exception ex) {
-                    String err = String.format("{\"result\":\"false\",\"error\":\"%s\"}", ex.getMessage());
-                    sb.append(parseJSONStringToJSONObject(err));
-                }
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                users.add(task.getResult().toObject(User.class));
+                latch.countDown();
             }
         });
-
-        t1.start();
         try {
-            t1.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            latch.await();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
         }
+        return users.get(0);
     }
 
-    private static JSONObject parseJSONStringToJSONObject(final String str) {
-        JSONObject response = null;
-        try {
-            response = new JSONObject(str);
-        } catch (Exception ex) {
-            try {
-                response = new JSONObject();
-                response.put("result", "failed");
-                response.put("data", str);
-                response.put("error", ex.getMessage());
-            } catch (JSONException ignored) {
+    public static Listing getListing(String id) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final CountDownLatch latch = new CountDownLatch(1);
+
+        final List<Listing> listings = new ArrayList<>();
+        db.collection("listings").document(id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                listings.add(task.getResult().toObject(Listing.class));
+                latch.countDown();
             }
+        });
+        try {
+            latch.await();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
         }
-        return response;
+        return listings.get(0);
     }
 }

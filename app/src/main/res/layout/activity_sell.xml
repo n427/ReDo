@@ -1,32 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
-    tools:context=".LoginActivity">
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:text="Selling?"
+        android:textColor="#000000"
+        android:textSize="30sp" />
 
     <ScrollView
+        android:id="@+id/sellScroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/materialTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Selling?"
-                android:textColor="#000000"
-                android:textSize="30sp"
-                android:textStyle="normal" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -43,6 +41,24 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Item Name"
+                    android:shadowColor="#002C2C2C"
+                    android:textColorHighlight="#FFFFFF" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginBottom="10dp"
+                app:startIconDrawable="@drawable/ic_baseline_location_city_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/sellOrganization"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Charitable Organization"
                     android:shadowColor="#002C2C2C"
                     android:textColorHighlight="#FFFFFF" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -78,13 +94,13 @@
                     android:id="@+id/sellDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minLines="5"
-                    android:scrollbarAlwaysDrawVerticalTrack="true"
-                    android:scrollbars="vertical"
                     android:ems="10"
                     android:gravity="top"
                     android:hint="Item Description"
                     android:inputType="textMultiLine"
+                    android:minLines="5"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
+                    android:scrollbars="vertical"
                     android:shadowColor="#002C2C2C"
                     android:textColorHighlight="#FFFFFF" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -106,8 +122,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp">
+                android:layout_marginVertical="30dp">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/sellBack"
@@ -123,21 +138,24 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/sellSubmit"
+                    android:id="@+id/sellSell"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
                     android:layout_marginRight="40dp"
                     android:backgroundTint="#FDD982"
-                    android:text="Submit"
+                    android:text="Sell"
                     android:textAllCaps="false"
                     android:textColor="#505050"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </LinearLayout>
     </ScrollView>
 
-
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/sellBottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_navigation_menu" />
 </LinearLayout>

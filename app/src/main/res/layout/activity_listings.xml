@@ -6,15 +6,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/listingsTitle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:paddingVertical="10dp"
         android:text="Listings"
-        android:textSize="40dp"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <ListView
         android:id="@+id/listingsList"
@@ -24,7 +27,7 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+        android:id="@+id/listingsBottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

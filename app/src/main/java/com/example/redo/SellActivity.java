@@ -2,24 +2,24 @@ package com.example.redo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+public class SellActivity extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
+    private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.UUID;
-
-public class SellActivity extends AppCompatActivity implements View.OnClickListener {
     EditText nameEdit;
+    EditText organizationEdit;
     EditText priceEdit;
     EditText descriptionEdit;
 
@@ -28,15 +28,43 @@ public class SellActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sell);
 
+        db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+
+        // setup edit fields
         nameEdit = findViewById(R.id.sellItemName);
+        organizationEdit = findViewById(R.id.sellOrganization);
         priceEdit = findViewById(R.id.sellPrice);
         descriptionEdit = findViewById(R.id.sellDescription);
 
-        MaterialButton backButton = findViewById(R.id.sellBack);
-        MaterialButton submitButton = findViewById(R.id.sellSubmit);
+        // setup bottom navigation bar
+        BottomNavigationView bottomNavigation = findViewById(R.id.sellBottomNavigation);
+        bottomNavigation.setSelectedItemId(R.id.menuSell);
+        bottomNavigation.setOnNavigationItemSelectedListener(this);
 
+        // setup buttons
+        MaterialButton backButton = findViewById(R.id.sellBack);
+        MaterialButton sellButton = findViewById(R.id.sellSell);
         backButton.setOnClickListener(this);
-        submitButton.setOnClickListener(this);
+        sellButton.setOnClickListener(this);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuListings:
+                Intent sellIntent = new Intent(SellActivity.this, ListingsActivity.class);
+                startActivity(sellIntent);
+                break;
+            case R.id.menuSell:
+                break;
+            case R.id.menuAccount:
+                FirebaseAuth.getInstance().signOut();
+                Intent mainIntent = new Intent(SellActivity.this, MainActivity.class);
+                startActivity(mainIntent);
+                break;
+        }
+        return false;
     }
 
     @Override
@@ -46,33 +74,20 @@ public class SellActivity extends AppCompatActivity implements View.OnClickListe
                 Intent backIntent = new Intent(SellActivity.this, MainActivity.class);
                 startActivity(backIntent);
                 break;
-            case R.id.sellSubmit:
-                submit();
-                Intent nextIntent = new Intent(SellActivity.this, SellActivity.class);
+            case R.id.sellSell:
+                String name = nameEdit.getText().toString();
+                String organization = organizationEdit.getText().toString();
+                double price = Double.parseDouble(priceEdit.getText().toString());
+                String description = descriptionEdit.getText().toString();
+
+                // save the listing
+                Listing listing = new Listing(name, organization, price, description, mAuth.getUid());
+                db.collection("listings").add(listing);
+
+                // go to the listings page
+                Intent nextIntent = new Intent(SellActivity.this, ListingsActivity.class);
                 startActivity(nextIntent);
                 break;
         }
-    }
-
-    private void submit() {
-        // get values from the input fields
-        String name = nameEdit.getText().toString();
-        int price = Integer.parseInt(priceEdit.getText().toString());
-        String description = descriptionEdit.getText().toString();
-
-        // convert values into json format
-        JSONObject listing = new JSONObject();
-
-        try {
-            listing.put("name", name);
-            listing.put("price", price);
-            listing.put("description", description);
-            listing.put("sellerId", UUID.randomUUID()); // TODO: change this to the seller id
-            listing.put("date", new SimpleDateFormat("MM-dd-yyyy").format(new Date()));
-        } catch (JSONException ignored) {
-        }
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        database.getReference().child("postings").child(UUID.randomUUID().toString()).setValue(listing);
     }
 }

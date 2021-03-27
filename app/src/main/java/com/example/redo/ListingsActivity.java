@@ -1,60 +1,71 @@
 package com.example.redo;
 
+import android.accounts.Account;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class ListingsActivity extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemReselectedListener {
-
-    private ArrayAdapter<String> listAdapter;
+public class ListingsActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listings);
 
-        BottomNavigationView bottomNavigation =findViewById(R.id.bottom_navigation);
-        bottomNavigation.setOnNavigationItemReselectedListener(this);
+        db = FirebaseFirestore.getInstance();
 
+        // setup bottom navigation bar
+        BottomNavigationView bottomNavigation = findViewById(R.id.listingsBottomNavigation);
+        bottomNavigation.setSelectedItemId(R.id.menuListings);
+        bottomNavigation.setOnNavigationItemSelectedListener(this);
+
+        // setup listings list
         ListView listView = findViewById(R.id.listingsList);
-        ArrayList<String> listData = new ArrayList<>();
-        listData.add("something1");
-        listData.add("something2");
-        listData.add("something3");
-        listData.add("something4");
-        listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+        final ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<String>());
         listView.setAdapter(listAdapter);
+
+        // add listings to listings list
+        db.collection("listings").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                    Listing listing = documentSnapshot.toObject(Listing.class);
+                    listAdapter.add(listing.getName());
+                }
+            }
+        });
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.logout:
-                FirebaseAuth.getInstance().signOut();
-                break;
-        }
-    }
-
-    @Override
-    public void onNavigationItemReselected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.logout:
-                FirebaseAuth.getInstance().signOut();
-                Intent mainIntent = new Intent(ListingsActivity.this, MainActivity.class);
-                startActivity(mainIntent);
+            case R.id.menuListings:
+                break;
+            case R.id.menuSell:
+                Intent sellIntent = new Intent(ListingsActivity.this, SellActivity.class);
+                startActivity(sellIntent);
+                break;
+            case R.id.menuAccount:
+                Intent accountIntent = new Intent(ListingsActivity.this, AccountActivity.class);
+                startActivity(accountIntent);
                 break;
         }
+        return false;
     }
 }
