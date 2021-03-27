@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/page_1"
+        android:id="@+id/menuListings"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_shopping_cart_24"
+        android:title="Listings"/>
+    <item
+        android:id="@+id/menuSell"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_add_circle_24"
+        android:title="Sell"/>
+    <item
+        android:id="@+id/menuAccount"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_person_24"
-        android:title="Tab 1"/>
-    <item
-        android:id="@+id/page_2"
-        android:enabled="true"
-        android:icon="@drawable/ic_baseline_location_city_24"
-        android:title="Tab 2"/>
+        android:title="Account"/>
 </menu>
