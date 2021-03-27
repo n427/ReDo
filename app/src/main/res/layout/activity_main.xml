@@ -48,7 +48,6 @@
         android:text="ReDo"
         android:textSize="56sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/buyButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
