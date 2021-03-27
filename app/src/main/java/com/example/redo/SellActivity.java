@@ -49,19 +49,21 @@ public class SellActivity extends AppCompatActivity implements View.OnClickListe
         sellButton.setOnClickListener(this);
     }
 
+    // bottom navigation button click
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuListings:
-                Intent sellIntent = new Intent(SellActivity.this, ListingsActivity.class);
-                startActivity(sellIntent);
+                Intent listingsIntent = new Intent(SellActivity.this, ListingsActivity.class);
+                startActivity(listingsIntent);
                 break;
             case R.id.menuSell:
+                Intent sellIntent = new Intent(SellActivity.this, SellActivity.class);
+                startActivity(sellIntent);
                 break;
             case R.id.menuAccount:
-                FirebaseAuth.getInstance().signOut();
-                Intent mainIntent = new Intent(SellActivity.this, MainActivity.class);
-                startActivity(mainIntent);
+                Intent accountIntent = new Intent(SellActivity.this, AccountActivity.class);
+                startActivity(accountIntent);
                 break;
         }
         return false;

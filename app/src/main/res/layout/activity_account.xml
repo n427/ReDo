@@ -32,36 +32,6 @@
             android:textSize="20sp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/accountSold"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
-            android:backgroundTint="#FAECE6"
-            android:text="Recently Sold"
-            android:textAllCaps="false"
-            android:textColor="#505050"
-            android:textSize="20sp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/accountPurchased"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
-            android:backgroundTint="#FAECE6"
-            android:text="Recently Purchased"
-            android:textAllCaps="false"
-            android:textColor="#505050"
-            android:textSize="20sp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/accountInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
-            android:backgroundTint="#FAECE6"
-            android:text="My Info"
-            android:textAllCaps="false"
-            android:textColor="#505050"
-            android:textSize="20sp" />
-
-        <com.google.android.material.button.MaterialButton
             android:id="@+id/accountLogout"
             android:layout_width="wrap_content"
             android:layout_height="55dp"

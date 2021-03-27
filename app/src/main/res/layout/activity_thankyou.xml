@@ -22,16 +22,16 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="148dp"
+        android:layout_marginBottom="132dp"
         android:gravity="center"
-        android:text="Thank you for bidding on this item, the bidding ends on ____. You will be notified if you win."
+        android:text="Thank you for purchasing this item. The seller will contact you soon."
         android:textSize="28dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintBottom_toTopOf="@+id/thankyouBottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+        android:id="@+id/thankyouBottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -33,23 +33,27 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
         logoutButton.setOnClickListener(this);
     }
 
+    // bottom navigation button click
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuListings:
-                Intent accountIntent = new Intent(AccountActivity.this, ListingsActivity.class);
-                startActivity(accountIntent);
+                Intent listingsIntent = new Intent(AccountActivity.this, ListingsActivity.class);
+                startActivity(listingsIntent);
                 break;
             case R.id.menuSell:
                 Intent sellIntent = new Intent(AccountActivity.this, SellActivity.class);
                 startActivity(sellIntent);
                 break;
             case R.id.menuAccount:
+                Intent accountIntent = new Intent(AccountActivity.this, AccountActivity.class);
+                startActivity(accountIntent);
                 break;
         }
         return false;
     }
 
+    // button click
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -58,6 +62,10 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
                 Intent mainIntent = new Intent(AccountActivity.this, MainActivity.class);
                 startActivity(mainIntent);
                 break;
+
+            case R.id.accountItems:
+                Intent nextIntent = new Intent(AccountActivity.this, AccountActivity.class);
+                startActivity(nextIntent);
         }
     }
 }
