@@ -10,6 +10,8 @@ import okhttp3.RequestBody;
 public class Helpers {
     private static final String BASE_URL = "https://api.sheety.co/431e78c323ce8d7e2868e0d3a5ee3c6e/reDo/";
 
+    public static final String TAG = "ReDo";
+
     public static void post(final String sheet, final JSONObject json) {
         final StringBuilder sb = new StringBuilder();
         Thread t1 = new Thread(new Runnable() {
