@@ -6,8 +6,8 @@
         android:icon="@drawable/ic_baseline_person_24"
         android:title="Tab 1"/>
     <item
-        android:id="@+id/page_2"
+        android:id="@+id/logout"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_location_city_24"
-        android:title="Tab 2"/>
+        android:title="Logout"/>
 </menu>

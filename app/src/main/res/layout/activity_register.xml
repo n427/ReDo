@@ -74,7 +74,6 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Name"
-                android:inputType="textPassword"
                 android:shadowColor="#002C2C2C"
                 android:textColorHighlight="#FFFFFF" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -93,7 +92,6 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="City"
-                android:inputType="textPassword"
                 android:shadowColor="#002C2C2C"
                 android:textColorHighlight="#FFFFFF" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -121,12 +119,12 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/regSubmit"
+            android:id="@+id/regRegister"
             android:layout_width="wrap_content"
             android:layout_height="55dp"
             android:layout_marginRight="40dp"
             android:backgroundTint="#FDD982"
-            android:text="Submit"
+            android:text="Register"
             android:textAllCaps="false"
             android:textColor="#505050"
             android:textSize="18sp"
